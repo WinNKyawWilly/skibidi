@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../src/output.css" rel="stylesheet" />
+  <title>Document</title>
+</head>
+
+<body class="bg-c1">
+  <section class="bg-white">
+    <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
+      <aside class="relative block h-60 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
+        <img alt="" src="../img/il_570xN.520231841_h49u.jpg" class="absolute inset-0 h-full w-full object-cover" />
+      </aside>
+      <main
+        class="bg-c1 flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+        <div class="max-w-xl lg:max-w-3xl">
+
+          <h1 class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+            Welcome to
+            <span class="text-c3">Skibidi Books</span> 📚
+          </h1>
+
+          <p class="mt-4 leading-relaxed text-gray-500">
+            Register now for an enhanced book-shopping
+            experience! Access personalized carts, exclusive
+            book recommendations, and member discounts. Dive
+            into a world where your love for books is rewarded
+            and celebrated.
+          </p>
+
+          <form action="#" class="mt-8 grid grid-cols-6 gap-6" id="registrationForm">
+            <div class="col-span-6 sm:col-span-3">
+              <label for="FirstName" class="block text-sm font-medium text-gray-700">
+                First Name
+              </label>
+
+              <input type="text" id="FirstName" name="first_name"
+                class="bg-c0 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="LastName" class="block text-sm font-medium text-gray-700">
+                Last Name
+              </label>
+
+              <input type="text" id="LastName" name="last_name"
+                class="bg-c0 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+            </div>
+
+            <div class="col-span-6">
+              <label for="Email" class="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+
+              <input type="email" id="Email" name="email"
+                class="bg-c0 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="Password" class="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+
+              <input type="password" id="Password" name="password"
+                class="bg-c0 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="PasswordConfirmation" class="block text-sm font-medium text-gray-700">
+                Password Confirmation
+              </label>
+
+              <input type="password" id="PasswordConfirmation" name="password_confirmation"
+                class="bg-c0 mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+            </div>
+            <div id="alert-pass-con"
+              class="hidden col-span-6 flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
+              role="alert">
+              <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+              </svg>
+              <div class="ms-3 text-sm font-medium">
+                The password confirmation does not match
+              </div>
+              <button type="button"
+                class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-pass-con" aria-label="Close">
+                <span class="sr-only">Dismiss</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+              </button>
+            </div>
+
+            <div id="alert-email-used"
+              class="hidden col-span-6 flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
+              role="alert">
+              <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+              </svg>
+              <div class="ms-3 text-sm font-medium">
+                The email has already been taken
+              </div>
+              <button type="button"
+                class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-email-used" aria-label="Close">
+                <span class="sr-only">Dismiss</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+              <button type="submit"
+                class="create-account-btn inline-block shrink-0 rounded-md border border-c2 bg-c3 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+                Create an account
+              </button>
+              <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                Already have an account?
+                <a href="/login.html" class="text-gray-700 underline">Log in</a>.
+              </p>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("registrationForm");
+      const passwordInput = document.getElementById("Password");
+      const confirmPasswordInput = document.getElementById("PasswordConfirmation");
+      const passAlertDiv = document.getElementById("alert-pass-con");
+      const emailAlertDiv = document.getElementById("alert-email-used");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Log all input field values
+        const formData = new FormData(form);
+        const formObject = {};
+
+        formData.forEach((value, key) => {
+          console.log(`${key}: ${value}`);
+        });
+        formData.forEach((value, key) => {
+          formObject[key] = value;
+        });
+
+        console.log(formObject);
+        console.log(JSON.stringify({ form: formObject }));
+
+        if (passwordInput.value !== confirmPasswordInput.value) {
+          // Show the alert
+          passAlertDiv.classList.remove('hidden');
+        } else {
+          // If passwords match, make the POST request
+          fetch("/register", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify({ form: formObject }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                window.location.href = "/login.html";
+                return response.text();
+              } else if (response.status === 400) {
+                emailAlertDiv.classList.remove('hidden');
+                throw new Error('182 Bad Request');
+              } else {
+                throw new Error('185 Server Error');
+              }
+            })
+            .then((data) => {
+              console.log("Register response:", data);
+              console.log("Htmllog:", formObject);
+            })
+            .catch((error) => {
+              console.error("193 Error:", error);
+            });
+        }
+      });
+
+      // Add event listener to the close button of the alert
+      const emailAlertCloseButton = passAlertDiv.querySelector('button[data-dismiss-target="#alert-pass-con"]');
+      if (emailAlertCloseButton) {
+        emailAlertCloseButton.addEventListener('click', function () {
+          passAlertDiv.classList.add('hidden');
+        });
+      }
+
+      // Add event listener to the close button of the alert
+      const passAlertCloseButton = emailAlertDiv.querySelector('button[data-dismiss-target="#alert-email-used"]');
+      if (passAlertCloseButton) {
+        passAlertCloseButton.addEventListener('click', function () {
+          emailAlertDiv.classList.add('hidden');
+        });
+      }
+    });
+
+  </script>
+</body>
+
+</html>

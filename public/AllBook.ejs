@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partial/head.ejs') -%>
+
+  <body class="bg-c0">
+    <%- include('./partial/nav.ejs') -%>
+
+      <section class="bg-c0">
+        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+          <header class="inline-flex flex justify-between w-full">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-3xl">
+              All books
+            </h2>
+          </header>
+
+          <ul class="mt-8 grid gap-4 grid-cols-3 lg:grid-cols-5">
+            <% const startIndex=(page - 1) * 15; const endIndex=page * 15; books.slice(startIndex,
+              endIndex).forEach(book=> { %>
+
+              <% if (book.book_id==null) { %>
+
+                <% } else { %>
+                  <li>
+                    <a href="/title?book=<%= encodeURIComponent(JSON.stringify(book)) %>"
+                      class="group block relative overflow-hidden">
+                      <% if (book.discount_percent> 0.00) { %>
+                        <div
+                          class="absolute top-0 right-0 h-2.25/100 w-4/100 bg-green-400 z-10 flex items-center justify-center rounded-bl-lg">
+                          <p class="m-1 text-gray-200">
+                            <%= parseInt(book.discount_percent) %>&#37; Off
+                          </p>
+                        </div>
+                        <% } else { %>
+
+                          <% } %>
+                            <img src="<%= book.cover_img %>" alt="<%= book.title %>"
+                              class="w-full aspect-[10/16] object-cover transition duration-500 group-hover:scale-105" />
+                            <div class="relative bg-c0 pt-3">
+                              <p class="mt-2">
+                                <span
+                                  class="tracking-wider text-gray-900 group-hover:underline group-hover:underline-offset-4">
+                                  <%= book.title %>
+                                </span>
+                              </p>
+                              <h3 class="text-xs text-gray-700 ">
+                                Author: <%= book.author %> <br />
+                                  <!-- Add other relevant book information here -->
+                              </h3>
+                              <h3 class="text-xs text-gray-700 ">
+                                Genre: <%= book.genre %><br />
+                                  <!-- Add other relevant book information here -->
+                              </h3>
+                            </div>
+                    </a>
+                  </li>
+                  <% } %>
+                    <% }); %>
+
+          </ul>
+        </div>
+
+      </section>
+      <div class="flex  items-center justify-center gap-3">
+        <% if (page == 1) { %>
+        <a class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-transparent text-gray-900 rtl:rotate-180">
+
+        <% } else { %>
+
+          <a href="/all/<%= parseInt(page) - 1 %>" class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-transparent text-gray-900 rtl:rotate-180">
+        <% } %>
+          <span class="sr-only">Next Page</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+
+        <p class="text-xs text-gray-900">
+          <%= page %>
+          <span class="mx-0.25">/</span>
+          <%= allPage %>
+        </p>
+        <% if (page == allPage) { %>
+        <a  class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-transparent text-gray-900 rtl:rotate-180">
+
+        <% } else { %>
+
+        <a href="/all/<%= parseInt(page) + 1 %>" class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-transparent text-gray-900 rtl:rotate-180">
+        <% } %>
+          
+          <span class="sr-only">Next Page</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+
+      <%- include('./partial/footer.ejs') -%>
+        <%- include('./partial/script.ejs') -%>
+  </body>
+
+</html>

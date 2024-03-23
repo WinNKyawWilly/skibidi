@@ -1,0 +1,14 @@
+version: '1'
+
+networks:
+  skibidi:
+    driver: bridge
+
+services:
+  frontend:
+    container_name: skibidi-frontend
+    image: ananta46/skibidi_book:latest
+    networks:
+      - skibidi
+    ports:
+      - "3000:3000"

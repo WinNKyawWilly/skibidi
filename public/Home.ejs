@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partial/head.ejs') -%>
+
+  <body class="bg-c0">
+    <%- include('./partial/nav.ejs') -%>
+
+      <% Object.keys(categoriesWithBooks).forEach(categoryName=> { %>
+        <section>
+          <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+            <header class="inline-flex flex justify-between w-full">
+              <h2 class="text-3xl font-bold text-gray-900 sm:text-3xl">
+                <%= categoryName %>
+              </h2>
+
+              <a class="group relative inline-block focus:outline-none focus:ring"
+                href="/category?category=<%= encodeURIComponent(categoryName) %>&books=<%= encodeURIComponent(JSON.stringify(categoriesWithBooks[categoryName].books)) %>">
+                <span
+                  class="absolute inset-0 translate-x-0 translate-y-0 bg-c1 transition-transform group-hover:translate-x-1.5 group-hover:translate-y-1.5"></span>
+
+                <span
+                  class="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest">
+                  See more
+                </span>
+              </a>
+
+
+
+            </header>
+
+            <ul class="mt-8 grid gap-4 grid-cols-3 lg:grid-cols-5">
+              <% categoriesWithBooks[categoryName].books.slice(0, 5).forEach(book=> { %>
+                <% if (book.book_id == null) { %>
+                
+                <% } else { %>
+                  <li>
+                    <a href="/title?book=<%= encodeURIComponent(JSON.stringify(book)) %>"
+                      class="group relative block overflow-hidden">
+                      <% if (book.discount_percent > 0.00) { %>
+                        <div
+                        class="absolute top-0 right-0 h-2.25/100 w-4/100 bg-green-400 z-10 flex items-center justify-center rounded-bl-lg">
+                        <p class="m-1 text-gray-200"><%= parseInt(book.discount_percent) %>&#37; Off</p>
+                      </div>
+                      <% } else { %>
+                        
+                      <% } %>
+                      
+  
+                      <img src="<%= book.cover_img %>" alt="<%= book.title %>"
+                        class="w-full aspect-[10/16] object-cover transition duration-500 group-hover:scale-105" />
+  
+                      <div class="relative bg-c0 pt-3 ">
+                        <p class="mt-2">
+                          <span class="tracking-wider text-gray-900 group-hover:underline group-hover:underline-offset-4">
+                            <%= book.title %>
+                          </span>
+                        </p>
+                        <h3 class="text-xs text-gray-700 ">
+                          Author: <%= book.author %> <br />
+                            <!-- Add other relevant book information here -->
+                        </h3>
+                        <h3 class="text-xs text-gray-700 ">
+                          Genre: <%= book.genre %><br />
+                            <!-- Add other relevant book information here -->
+                        </h3>
+                      </div>
+                    </a>
+                  </li>
+                <% } %>
+              <% }); %>
+            </ul>
+          </div>
+        </section>
+        <% }); %>
+
+          <%- include('./partial/footer.ejs') -%>
+          <%- include('./partial/script.ejs') -%>
+  </body>
+
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../src/output.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <title>Add Category</title>
+</head>
+
+<body>
+  <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <!-- logo and name -->
+      <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="https://www.reshot.com/preview-assets/icons/TJURXQFAYV/book-TJURXQFAYV.svg" class="h-8"
+          alt="Skibidi Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Skibidi</span>
+      </a>
+      
+      <button data-collapse-toggle="navbar-multi-level" type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-multi-level" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+      
+      <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
+        <ul
+          class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <a href="index.html"
+              class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+              aria-current="page">Product</a>
+          </li>
+          <li>
+            <a href="../public/menu/wishlist.html"
+              class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Category</a>
+          </li>
+          <li>
+            <a href="../public/menu/cart.html"
+              class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sale</a>
+          </li>
+          <li>
+            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+              class="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
+              Account
+              <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 4 4 4-4" />
+              </svg>
+            </button>
+            <!-- Dropdown menu -->
+            <div id="dropdownNavbar"
+              class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLargeButton">
+                <li>
+                  <a href="../public/menu/account/profile.html"
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                </li>
+              </ul>
+              <div class="py-1">
+                <a href="login.html"
+                  class="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log
+                  out</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="mx-auto max-w-screen-lg px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <div class="text-center sm:text-left">
+          <h1 class="text-3xl font-bold text-gray-900 sm:text-3xl">
+            Add New Category!
+          </h1>
+
+          <p class="mt-1.5 text-sm text-gray-500">
+            Yay new category! 🎉
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="bg-gray-100">
+    <div class="mx-auto max-w-screen-lg px-4 py-16 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
+        <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+          <form action="#" class="space-y-4">
+            <div>
+              <legend class="text-lg font-medium text-gray-900">
+                Category name
+              </legend>
+              <label class="sr-only" for="name">name</label>
+              <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="name" type="text" id="name" />
+            </div>
+
+            <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+              <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="custom-styled-tab"
+                data-tabs-toggle="#custom-styled-tab-content"
+                data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+                data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
+                role="tablist">
+                <li class="me-2" role="presentation">
+                  <button class="inline-block p-4 border-b-2 rounded-t-lg" id="genre-styled-tab"
+                    data-tabs-target="#styled-genre" type="button" role="tab" aria-controls="genre"
+                    aria-selected="false">
+                    Show by Genre
+                  </button>
+                </li>
+                <li class="me-2" role="presentation">
+                  <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="custom-styled-tab" data-tabs-target="#styled-custom" type="button" role="tab"
+                    aria-controls="custom" aria-selected="false">
+                    Custom
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div id="custom-styled-tab-content">
+              <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-genre" role="tabpanel"
+                aria-labelledby="genre-tab">
+                <fieldset>
+                  <legend class="text-lg font-medium text-gray-900">Genre</legend>
+
+                  <div class="mt-4 space-y-2">
+                    <label for="Option1" class="flex cursor-pointer items-start gap-4">
+                      <div class="flex items-center">
+                        &#8203;
+                        <input type="checkbox" class="size-4 rounded border-gray-300" id="Option1" />
+                      </div>
+
+                      <div>
+                        <strong class="font-medium text-gray-900"> Fantasy </strong>
+                      </div>
+                    </label>
+
+                    <label for="Option2" class="flex cursor-pointer items-start gap-4">
+                      <div class="flex items-center">
+                        &#8203;
+                        <input type="checkbox" class="size-4 rounded border-gray-300" id="Option2" />
+                      </div>
+
+                      <div>
+                        <strong class="font-medium text-gray-900"> Comedy </strong>
+                      </div>
+                    </label>
+
+                    <label for="Option3" class="flex cursor-pointer items-start gap-4">
+                      <div class="flex items-center">
+                        &#8203;
+                        <input type="checkbox" class="size-4 rounded border-gray-300" id="Option3" />
+                      </div>
+
+                      <div>
+                        <strong class="font-medium text-gray-900"> Horror </strong>
+                      </div>
+                    </label>
+                  </div>
+                </fieldset>
+                <div class="mt-4 text-right">
+                  <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                    href="#">
+                    Add by Genre
+                  </a>
+                </div>
+              </div>
+
+              <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-custom" role="tabpanel"
+                aria-labelledby="custom-tab">
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                          <th scope="col" class="p-4">
+                              <div class="flex items-center">
+                                  <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 hidden">
+                                  <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                              </div>
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                              Title
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                              Author
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                              Genre
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                              Price
+                          </th>
+                      </tr>
+                  </thead>
+                    <tbody>
+                      <!-- Your table rows go here -->
+                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="w-4 p-4">
+                            <div class="flex items-center">
+                                <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            The Great Gatsby
+                        </td>
+                        <td class="px-6 py-4">
+                            F. Scott Fitzgerald
+                        </td>
+                        <td class="px-6 py-4">
+                            Fiction
+                        </td>
+                        <td class="px-6 py-4">
+                            $10.99
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="w-4 p-4">
+                            <div class="flex items-center">
+                                <input id="checkbox-table-search-2" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="checkbox-table-search-2" class="sr-only">checkbox</label>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            To Kill a Mockingbird
+                        </td>
+                        <td class="px-6 py-4">
+                            Harper Lee
+                        </td>
+                        <td class="px-6 py-4">
+                            Drama
+                        </td>
+                        <td class="px-6 py-4">
+                            $12.99
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="w-4 p-4">
+                            <div class="flex items-center">
+                                <input id="checkbox-table-search-3" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            1984
+                        </td>
+                        <td class="px-6 py-4">
+                            George Orwell
+                        </td>
+                        <td class="px-6 py-4">
+                            Science Fiction
+                        </td>
+                        <td class="px-6 py-4">
+                            $9.99
+                        </td>
+                    </tr>                    
+                    </tbody>
+                  </table>
+                  
+                </div>
+                <div class="mt-4 text-right ">
+                  <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                    href="#">
+                    Custom Add
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- <div class="mt-4 text-right">
+              <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                href="#">
+                Add
+              </a>
+            </div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

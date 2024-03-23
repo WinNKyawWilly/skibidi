@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <link href="/src/output.css" rel="stylesheet" />
+  <title>Cart</title>
+</head>
+
+<body class="bg-c0">
+  <%- include('./partial/nav.ejs') -%>
+
+    <section class="bg-c0">
+      <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div class="mx-auto max-w-3xl">
+          <header class="text-center">
+            <h1 class="text-xl font-bold text-gray-900 sm:text-3xl">
+              Our Store
+            </h1>
+          </header>
+          <div id="map" class="mx-auto my-12 h-60 w-60 sm:h-60 sm:w-60 md:h-96 md:w-96" style="">
+            
+          </div>
+          
+
+
+        </div>
+      </div>
+    </section>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: { lat: -37.109126, lng: -12.289001 },
+          zoom: 18,
+          mapTypeId: 'satellite'
+        });
+        //-37.08833298 -12.2833322
+        var marker = new google.maps.Marker({
+          position: { lat: -37.10942298, lng: -12.2879322 },
+          map: map
+        })
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTD_DhQO4xwlrbnJfMs-sZ1YKPZ23_tEE&callback=initMap"
+      async defer></script>
+
+    <%- include('./partial/footer.ejs') -%>
+      <%- include('./partial/script.ejs') -%>
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partial/head.ejs') -%>
+
+  <body class="min-h-screen bg-c0">
+    <%- include('./partial/nav.ejs') -%>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 bg-c0 ">
+        <div
+          class="sm:ml-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 justify-self-center lg:justify-self-end">
+          <ul class="mt-8 grid gap-4 w-max-content mx-auto justify-end">
+            <li>
+              <a class="group block overflow-hidden">
+                <img src="<%= book.cover_img %>" alt="<%= book.title %>"
+                  class="max-w-64 lg:max-w-80 aspect-[10/16] object-cover transition duration-500 group-hover:scale-105" />
+
+                <!-- <div class="relative bg-white pt-3">
+                  <p class="mt-2">
+                    <span class="tracking-wider text-gray-900 group-hover:underline group-hover:underline-offset-4">
+                      <%= book.title %>
+                    </span>
+                  </p>
+                  <h3 class="text-xs text-gray-700">
+                    Author: <%= book.author %> <br />
+                      
+                  </h3>
+                  <h3 class="text-xs text-gray-700">
+                    Genre: <%= book.genre %><br />
+                  </h3>
+                </div> -->
+                
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flow-root px-8 sm:px-0 pt-4 pb-4 sm:!pt-24 sm:!pb-24 items-center justify-start">
+          <dl class="-my-3 divide-y divide-gray-100 text-sm pr-8 sm:pr-8 md:pr-8 lg:pr-32 2xl:pr-80">
+            <div class="grid grid-cols-3 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+              <dt class="font-medium text-gray-900">Title</dt>
+              <dd class="w-fit text-gray-700 col-span-2 text-center">
+                <%= book.title %>
+              </dd>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+              <dt class="font-medium text-gray-900">Author</dt>
+              <dd class="text-gray-700 col-span-2">
+                <%= book.author %>
+              </dd>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+              <dt class="font-medium text-gray-900">Genre</dt>
+              <dd class="text-gray-700 col-span-2">
+                <%= book.genre %>
+              </dd>
+            </div>
+
+            <!-- <div class="grid grid-cols-3 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+              <dt class="font-medium text-gray-900">Salary</dt>
+              <dd class="text-gray-700 col-span-2">$1,000,000+</dd>
+            </div> -->
+
+            <div class="grid grid-cols-3 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+              <dt class="font-medium text-gray-900">Plot</dt>
+              <dd class="text-gray-700 col-span-2">
+                <%= book.plot %>
+              </dd>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 py-8 sm:grid-cols-1 sm:gap-4">
+              <dd class="text-gray-700 col-span-1 flex justify-center items-center">
+                <p class="mt-2">
+                  <span class="sr-only">Regular Price</span>
+
+                  <% if (book.discount_percent> 0.00) { %>
+                    <span class="text-lg tracking-wider text-gray-400 line-through">$<%=
+                        Number(book.base_price).toFixed(2) %>USD</span>
+                    <span class="text-lg tracking-wider text-gray-900">$<%= Number(book.sell_price).toFixed(2) %>
+                        USD</span>
+                    <br>
+                    <span
+                      class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                      <%= book.discount_percent %>&#37; Off
+                    </span>
+                    <span class="text-xl">🥳</span>
+                    <% } else { %>
+                      <span class="text-lg mx-auto tracking-wider text-gray-900">$<%= Number(book.base_price).toFixed(2)
+                          %>USD</span>
+                      <% } %>
+
+                </p>
+              </dd>
+
+              <dd class="flex justify-center items-center sm:mx-auto lg:ml-auto text-gray-700 sm:col-span-1 col-span-1">
+                <div>
+                  <label for="Quantity" class="sr-only">Quantity</label>
+                  <div class="flex items-center rounded border-2 border-gray-400">
+                    <button type="button" id="decrementBtn"
+                      class="size-10 leading-10 text-gray-900 transition hover:opacity-75">&minus;</button>
+                    <input type="number" id="Quantity" value="1"
+                      class="text-gray-900 bg-c0 h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+                    <button type="button" id="incrementBtn"
+                      class="size-10 leading-10 text-gray-900 transition hover:opacity-75">&plus;</button>
+                  </div>
+                </div>
+              </dd>
+
+              <dd class="flex justify-center items-center sm:mx-auto lg:ml-auto text-gray-700 sm:col-span-1 col-span-1">
+
+                <% if (typeof user !=='undefined' && user) { %>
+                  <a id="addToCartBtn" class="group relative inline-block focus:outline-none focus:ring"
+                    data-modal-target="popup-modal" data-modal-toggle="popup-modal">
+                    <span
+                      class="absolute inset-0 translate-x-0 translate-y-0 bg-green-300 transition-transform group-hover:translate-x-1.5 group-hover:translate-y-1.5"></span>
+                    <span
+                      class="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest">
+                      Add to cart
+                    </span>
+                  </a>
+                  <% } else { %>
+                    <a class="group relative inline-block focus:outline-none focus:ring"
+                      data-modal-target="static-modal" data-modal-toggle="static-modal" type="button">
+                      <span
+                        class="absolute inset-0 translate-x-0 translate-y-0 bg-green-300 transition-transform group-hover:translate-x-1.5 group-hover:translate-y-1.5"></span>
+                      <span
+                        class="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest">
+                        no cart :c
+                      </span>
+                    </a>
+                    <% } %>
+
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+              <h3 class="text-xl mx-auto font-semibold text-gray-900 dark:text-white">
+
+              </h3>
+              <button type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8  inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="static-modal">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+              <p class="text-base text-center leading-relaxed text-gray-500 dark:text-gray-400">
+                You need to have an account in order to use cart
+              </p>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex justify-center  p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+              <button data-modal-hide="static-modal" type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I
+                understand
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="popup-modal" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button"
+              class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              data-modal-hide="popup-modal">
+              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+            <div class="p-4 md:p-5 text-center">
+              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+              <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Add <%= book.title %> to your cart?
+              </h3>
+              <button id="yBtn" data-modal-hide="popup-modal" type="button"
+                class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                Yes, I'm sure
+              </button>
+              <button data-modal-hide="popup-modal" type="button"
+                class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No,
+                cancel</button>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" id="bookData" value='<%= JSON.stringify(book) %>'>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const quantityInput = document.getElementById("Quantity");
+          const decrementBtn = document.getElementById("decrementBtn");
+          const incrementBtn = document.getElementById("incrementBtn");
+          const addToCartBtn = document.getElementById("addToCartBtn");
+          const popupModal = document.getElementById("popup-modal");
+
+          decrementBtn.addEventListener("click", function () {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+              quantityInput.value = currentValue - 1;
+            }
+          });
+
+          incrementBtn.addEventListener("click", function () {
+            let currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+          });
+
+          // Add event listener for "Yes, I'm sure" button inside the popup modal
+          const yesButton = document.getElementById("yBtn");
+          yesButton.addEventListener('click', function () {
+            // Retrieve quantityInput within the event listener
+            const quantityInput = document.getElementById("Quantity");
+            // Retrieve book data from the hidden input field
+            const bookData = document.getElementById("bookData").value;
+            const book = JSON.parse(decodeURIComponent(bookData));
+            // You can put your logic here to add the item to the cart
+            const quantity = quantityInput.value;
+            // Example: Call addToCart function with quantity as parameter
+            addToCart(quantity, book);
+          });
+
+          function addToCart(quantity, book) {
+            // You can implement your logic here to add the item to the cart
+            console.log("Adding item to cart with quantity: ", quantity);
+            console.log("Book:", book);
+            console.log("type:", typeof (book));
+
+
+            const bookObject = {};
+            // book.forEach((value, key) => {
+            //   console.log(`${key}: ${value}`);
+            // });
+            // book.forEach((value, key) => {
+            //   bookObject[key] = value;
+            // });
+            for (const key in book) {
+              if (book.hasOwnProperty(key)) {
+                console.log(`${key}: ${book[key]}`);
+                bookObject[key] = book[key];
+              }
+            }
+            console.log("Book Object:", bookObject);
+            console.log("Book stringify:", JSON.stringify(bookObject));
+
+            // Send a fetch request to add the item to the cart
+            fetch("/addToCart", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                quantity: quantity,
+                book: bookObject 
+              })
+            })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Failed to add item to cart');
+                }
+                // Close the modal after adding to cart
+                popupModal.setAttribute('hidden', true);
+              })
+              .catch(error => {
+                console.error('Error adding item to cart:', error);
+                // Handle error
+              });
+          }
+        });
+      </script>
+
+      <%- include('./partial/footer.ejs') -%>
+        <%- include('./partial/script.ejs') -%>
+  </body>
+
+</html>

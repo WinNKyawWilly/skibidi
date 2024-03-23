@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partial/head.ejs') -%>
+
+  <body class="min-h-screen bg-c0">
+    <%- include('./partial/nav.ejs') -%>
+
+      <section class="bg-c0">
+        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+          <div class="mx-auto max-w-3xl">
+            <header class="text-center">
+              <h1 class="text-xl font-bold text-gray-900 sm:text-3xl">
+                Your Cart
+              </h1>
+            </header>
+
+            <div class="mt-8">
+              <ul class="space-y-4">
+                <% Object.keys(cart).forEach(title=> { %>
+                  <% cart[title].forEach(item=> { %>
+                    <li id="<%= item.book_id %>" data-cartId="<%= item.cart_id %>"
+                      data-base-price="<%= item.base_price %>" data-sell-price="<%= item.sell_price %>"
+                      class="flex items-center gap-4">
+                      <img src="<%= item.cover_img %>" alt="<%= item.title %>"
+                        class="aspect-[10/16] size-1/12 rounded object-cover" />
+
+                      <div>
+                        <h3 class="text-sm text-gray-900">Title: <%= item.title %>
+                        </h3>
+
+                        <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+                          <div>
+                            <dt class="inline">Author:</dt>
+                            <dd class="inline">
+                              <%= item.author %>
+                            </dd>
+                          </div>
+
+                          <div>
+                            <dt class="inline">Genre:</dt>
+                            <dd class="inline">
+                              <%= item.genre %>
+                            </dd>
+                          </div>
+                          <% if (item.discount_percent> 0.00) { %>
+                          <h3 class="text-[12px] text-gray-400 line-through"><%= item.base_price %> $ usd
+                          </h3>
+                          <h3 class="text-sm text-green-500"><%= item.sell_price %> $ usd
+                          </h3>
+                          <% } else { %>
+                            <h3 class="text-sm text-transparent line-through"><%= item.base_price %> $ usd
+                          </h3>
+                          <h3 class="text-sm text-gray-900"><%= item.sell_price %> $ usd
+                          </h3>
+                          <% } %>
+                        </dl>
+                      </div>
+                      <div class="ml-auto rows">
+                        <div class="mb-4 col-6 flex flex-1 items-center justify-end gap-2">
+                          <form>
+                            <div>
+                              <label for="Quantity" class="sr-only">Quantity</label>
+                              <div class="flex items-center rounded ">
+                                <button type="button" id="<%= item.book_id %>decrementBtn"
+                                  class="size-10 leading-10 text-gray-900 transition hover:opacity-75">&minus;</button>
+                                <input type="number" id="<%= item.book_id %>Quantity" value="<%= item.total_quantity %>"
+                                  class="rounded text-gray-900 bg-c0 h-10 w-16 border-gray-400 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+                                <button type="button" id="<%= item.book_id %>incrementBtn"
+                                  class="size-10 leading-10 text-gray-900 transition hover:opacity-75">&plus;</button>
+                              </div>
+                            </div>
+                          </form>
+
+                          <a href="" class="remove-item-btn">
+                            <button class="text-gray-600 transition hover:text-red-600">
+                              <span class="sr-only">Remove item</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="h-4 w-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                              </svg>
+                            </button>
+                          </a>
+
+                        </div>
+                        <h3 class="text-center col-span-6 text-sm text-gray-900 total-price">Price: <%= item.total_price
+                            %>$</h3>
+
+                      </div>
+
+
+                    </li>
+                    <% }); %>
+                      <% }); %>
+              </ul>
+
+              <div class="mt-8 flex justify-end border-t border-gray-100 pt-8">
+                <div class="px-8 sm:px-4 w-screen max-w-lg space-y-4">
+                  <dl class="space-y-0.5 text-sm text-gray-700">
+                    <div class="flex justify-between">
+                      <dt id="subtotal">Subtotal</dt>
+                      <dd id="subtotalValue">290 THB</dd>
+                    </div>
+
+                    <div class="flex justify-between">
+                      <dt>Shipping</dt>
+                      <dd>3 USD</dd>
+                    </div>
+
+                    <div class="flex justify-between !text-base font-medium">
+                      <dt>Total</dt>
+                      <dd id="total">335 THB</dd>
+                    </div>
+                  </dl>
+
+                  <!-- <div class="flex justify-end">
+                    <span
+                      class="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="-ms-1 me-1.5 h-4 w-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
+                      </svg>
+
+                      <p class="whitespace-nowrap text-xs">2 Discounts Applied</p>
+                    </span>
+                  </div> -->
+
+                  <div class="flex justify-end pt-4">
+                    <a href="#"
+                      class="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600">
+                      Checkout
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Get all increment and decrement buttons
+          const incrementButtons = document.querySelectorAll('[id$="incrementBtn"]');
+          const decrementButtons = document.querySelectorAll('[id$="decrementBtn"]');
+
+          // Add event listener to each increment button
+          incrementButtons.forEach(button => {
+            button.addEventListener("click", function () {
+              const itemId = button.id.replace("incrementBtn", "");
+              const quantityInput = document.getElementById(itemId + "Quantity");
+              let quantity = parseInt(quantityInput.value);
+              quantity++;
+              quantityInput.value = quantity;
+              updateTotalPrice(itemId, quantity);
+              updatePrices(); // Update subtotal and total
+            });
+          });
+
+          // Add event listener to each decrement button
+          decrementButtons.forEach(button => {
+            button.addEventListener("click", function () {
+              const itemId = button.id.replace("decrementBtn", "");
+              const quantityInput = document.getElementById(itemId + "Quantity");
+              let quantity = parseInt(quantityInput.value);
+              if (quantity > 1) {
+                quantity--;
+                quantityInput.value = quantity;
+                updateTotalPrice(itemId, quantity);
+                updatePrices(); // Update subtotal and total
+              }
+            });
+          });
+
+          
+          // Function to update total price
+          function updateTotalPrice(itemId, quantity) {
+            const item = document.getElementById(itemId);
+            const basePrice = parseFloat(item.getAttribute("data-base-price"));
+            const sellPrice = parseFloat(item.getAttribute("data-sell-price"));
+            let totalPrice = (quantity * sellPrice).toFixed(2); // Round to 2 decimal places
+            const totalPriceElement = item.querySelector(".total-price");
+            totalPriceElement.textContent = "Price: " + totalPrice + "$";
+          }
+
+          
+          // Function to update Subtotal, Total, and Shipping
+          function updatePrices() {
+            let subtotal = 0;
+            const items = document.querySelectorAll(".total-price");
+
+            items.forEach(item => {
+              const priceText = item.textContent.trim().replace("$", "").replace("Price:", "").trim();
+              const totalPrice = parseFloat(priceText);
+              subtotal += totalPrice;
+            });
+
+            const shippingCost = 3; // Assuming a static shipping cost of 3 USD
+
+            // Update Subtotal
+            const subtotalElement = document.querySelector("#subtotalValue");
+            subtotalElement.textContent = subtotal.toFixed(2) + " USD";
+
+            // Update Total
+            const totalElement = document.querySelector("#total");
+            
+
+            if(subtotal > 0){
+        
+              const total = subtotal + shippingCost;
+              totalElement.textContent = total.toFixed(2) + " USD";
+            }else{
+              console.log("sub = 0");
+              const total = 0;
+              totalElement.textContent = total + " USD";
+            }
+            
+
+            
+          }
+
+
+          // Call the function initially
+          updatePrices();
+          // Add event listener to each remove item button
+          const removeButtons = document.querySelectorAll('.remove-item-btn');
+
+          removeButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+              event.preventDefault(); // Prevent the default action of the anchor tag
+              const itemId = button.closest('li').id;
+              const cartId = button.closest('li').getAttribute('data-cartId');
+              removeFromCart(itemId, cartId);
+            });
+          });
+
+          function removeFromCart(itemId, cartId) {
+            console.log("request Post remove");
+            fetch('/removeFromCart', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ itemId: itemId, cartId: cartId }) // Include cartId in the payload
+            })
+              .then(response => {
+                if (response.ok) {
+                  // Item removed successfully, you may want to update the UI accordingly
+                  location.reload(); // Reload the page or update the cart UI as needed
+                } else {
+                  console.error('Error removing item from cart');
+                }
+              })
+              .catch(error => {
+                console.error('Error removing item from cart:', error);
+              });
+          }
+
+
+        });
+      </script>
+
+
+      <%- include('./partial/footer.ejs') -%>
+        <%- include('./partial/script.ejs') -%>
+  </body>
+
+</html>
