@@ -7,7 +7,7 @@ networks:
 services:
   frontend:
     container_name: skibidi-frontend
-    image: ananta46/skibidi_book:latest
+    image: winnkyaw/skibidi_book:latest
     networks:
       - skibidi
     ports:
