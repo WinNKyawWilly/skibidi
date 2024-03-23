@@ -1,0 +1,11 @@
+FROM mysql AS develop
+
+COPY ./sql/SkibidiBook.sql /docker-entrypoint-initdb.d/001.SkibidiBook.sql
+COPY ./sql/category.sql /docker-entrypoint-initdb.d/002.category.sql
+COPY ./sql/book.sql /docker-entrypoint-initdb.d/003.book.sql
+COPY ./sql/book_cat.sql /docker-entrypoint-initdb.d/004.book_cat.sql
+COPY ./sql/Userdump.sql /docker-entrypoint-initdb.d/005.Userdump.sql
+
+EXPOSE 3306
+
+CMD ["mysqld"]

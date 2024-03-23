@@ -5,17 +5,9 @@ networks:
     driver: bridge
 
 services:
-  frontend:
-    container_name: skibidi-frontend
-    image: winnkyaw/skibidi_book:latest
-    networks:
-      - skibidi
-    ports:
-      - "3000:3000"
-
   db:
     container_name: skibidi-db
-    image: mysql:5.7
+    image: winnkyaw/skibidi_db:latest
     networks:
       - skibidi
     environment:
@@ -25,6 +17,13 @@ services:
       MYSQL_PASSWORD: root
     ports:
       - "3306:3306"
-    volumes:
-      - Sql:/var/lib/mysql
-    
+        
+  frontend:
+    container_name: skibidi-frontend
+    image: winnkyaw/skibidi_book:latest
+    networks:
+      - skibidi
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
